@@ -30,9 +30,13 @@ pipeline {
         }
 
         stage('Approval Gate') {
-            steps {
-                input message: 'Review terraform plan above. Approve provisioning EC2?', ok: 'Deploy Infrastructure'
+            input {
+                message 'Review terraform plan above. Approve provisioning EC2?'
+                ok 'Deploy Infrastructure'
             }
+            steps {
+                echo 'Approval granted. Proceeding to apply...'
+                }
         }
 
         stage('Terraform Apply') {
