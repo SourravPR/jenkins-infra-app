@@ -15,7 +15,9 @@ pipeline {
         stage('Checkout & Validate') {
             steps {
                 dir('terraform') {
-                    bat 'terraform init'
+                    bat 'if exist terraform.tfstate del /f /q terraform.tfstate*'
+                    bat 'if exist tfplan del /f /q tfplan'
+                    bat 'terraform init -reconfigure'
                     bat 'terraform validate'
                 }
             }
