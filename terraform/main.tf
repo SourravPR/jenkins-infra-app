@@ -19,7 +19,7 @@ data "aws_vpc" "default" {
 
 # Security group allowing SSH and App Port 3000
 resource "aws_security_group" "app_sg" {
-  name        = "jenkins-app-security-group"
+  name_prefix = "jenkins-app-sg-"
   description = "Allow SSH and HTTP App traffic"
   vpc_id      = data.aws_vpc.default.id
 

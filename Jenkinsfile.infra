@@ -39,15 +39,9 @@ pipeline {
             steps {
                 dir('terraform') {
                     bat 'terraform apply -auto-approve tfplan'
-                    bat 'terraform output -raw ec2_public_ip > ../ec2_ip.txt'
+                    bat 'terraform output -raw ec2_public_ip'
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            cleanWs()
         }
     }
 }
